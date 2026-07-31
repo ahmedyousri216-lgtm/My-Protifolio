@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         Navbar
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <!-- Logo -->
+            <a href="#home" class="logo">
+                My Portfolio
+            </a>
+
+
+            <!-- Menu Button -->
+            <button class="menu-btn" id="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-links">
+
+                <li>
+                    <a href="#home" class="nav-link active">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about" class="nav-link">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#skills" class="nav-link">
+                        Skills
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#projects" class="nav-link">
+                        Projects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact" class="nav-link">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <!-- CV Button -->
+            <a href="#" class="cv-btn">
+                Download CV
+            </a>
+
+
+            <!-- Profile -->
+            <img src="https://iili.io/CSJjGus.md.jpg"
+                alt="Profile"
+                class="nav-profile">
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         Hero Section
+    ========================== -->
+
+    <section class="hero" id="home" >
+
+        <div class="hero-container">
+
+
+            <!-- Hero Text -->
+            <div class="hero-content">
+
+                <p class="hero-small-title">
+                    Front-End Developer
+                </p>
+
+
+               <h1>
+    Hi, I'm <span id="typing-name"></span>
+</h1>
+
+<h2 id="typing-job"></h2>
+                <p class="hero-description">
+                    I’m a passionate Front-End Developer who creates
+                    modern, responsive and user-friendly websites
+                    using HTML, CSS and JavaScript.
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a href="#projects"
+                        class="hero-btn primary-btn">
+                        View My Work
+                    </a>
+
+                    <a href="#contact"
+                        class="hero-btn secondary-btn">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Hero Image -->
+            <div class="hero-image">
+
+                <div class="image-border">
+
+                    <img src="https://iili.io/CSJjGus.md.jpg"
+                        alt="Ahmed Yousry">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+<!-- =========================
+     About Section
+========================= -->
+
+<section class="about" id="about">
+
+    <div class="about-container">
+
+        <p class="about-small-title">
+            About Me
+        </p>
+
+        <h2>
+            About <span>Me</span>
+        </h2>
+
+        <p class="about-description">
+            I'm a passionate Front-End Developer who loves building
+            modern, responsive and user-friendly websites.
+            I focus on creating clean designs and smooth user experiences
+            using HTML, CSS and JavaScript.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     Terminal Section
+========================= -->
+
+<section class="terminal-section">
+
+    <div class="terminal-container">
+
+        <div class="terminal-window">
+
+            <!-- Terminal Header -->
+            <div class="terminal-header">
+
+                <div class="terminal-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="terminal-title">
+                    Ahmed@portfolio: ~
+                </div>
+
+            </div>
+
+
+            <!-- Terminal Body -->
+            <div class="terminal-body">
+
+                <!-- السطر الأول ثابت -->
+                <div class="terminal-command-line">
+
+                    <span class="terminal-green">
+                        Ahmed@portfolio:
+                    </span>
+
+                    <span class="terminal-blue">
+                        ~$
+                    </span>
+
+                    <span class="terminal-white">
+                        whoami
+                    </span>
+
+                </div>
+
+
+                <!-- باقي الكلام بيتكتب هنا -->
+                <div class="terminal-output">
+
+                    <div id="terminal-line-1"></div>
+
+                    <div id="terminal-line-2"></div>
+
+                    <div id="terminal-line-3"></div>
+
+                    <div id="terminal-line-4"></div>
+
+                    <span class="terminal-cursor"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
