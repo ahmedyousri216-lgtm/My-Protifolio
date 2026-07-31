@@ -310,3 +310,168 @@ function startTerminalTyping() {
     nextLine();
 
 }
+
+// =========================
+// Experience Scroll Animation
+// =========================
+
+const experienceItems =
+    document.querySelectorAll(".timeline-item");
+
+
+const experienceObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+
+experienceItems.forEach((item) => {
+
+    experienceObserver.observe(item);
+
+});
+
+
+// =========================
+// My Approach Animation
+// =========================
+
+const approachSection =
+    document.querySelector(".approach-section");
+
+
+const approachObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    approachSection.classList.add("show");
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+
+if (approachSection) {
+
+    approachObserver.observe(approachSection);
+
+}
+
+
+
+// =========================
+// Skills Animation
+// =========================
+
+const skillsSection = document.querySelector(".skills-section");
+const skillBars = document.querySelectorAll(".skill-progress span");
+
+
+// تشغيل الـ Progress Bars من الأول
+function startSkillsAnimation() {
+
+    skillBars.forEach((bar) => {
+
+        // نرجع الشريط للصفر
+        bar.style.width = "0%";
+
+    });
+
+
+    // نخلي المتصفح يثبت الصفر الأول
+    setTimeout(() => {
+
+        skillBars.forEach((bar) => {
+
+            const width = bar.getAttribute("data-width");
+
+            bar.style.width = width;
+
+        });
+
+    }, 100);
+
+}
+
+
+// =========================
+// Skills Scroll Animation
+// =========================
+
+const skillsObserver = new IntersectionObserver(
+
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                skillsSection.classList.add("show");
+
+                // تشغيل النسب
+                startSkillsAnimation();
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold: 0.2
+    }
+
+);
+
+
+if (skillsSection) {
+
+    skillsObserver.observe(skillsSection);
+
+}
+
+
+// =========================
+// Fullscreen / Restart Animation
+// =========================
+
+// لو عندك زر Fullscreen
+const fullscreenBtn =
+    document.getElementById("fullscreen-btn");
+
+
+if (fullscreenBtn) {
+
+    fullscreenBtn.addEventListener("click", () => {
+
+        // نعيد تشغيل الـ Skills من الأول
+        startSkillsAnimation();
+
+    });
+
+}
