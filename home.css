@@ -1181,6 +1181,566 @@ html, body {
 
 
 
+/* ==========================================
+   Projects Section Slider
+========================================== */
+.projects-section {
+  min-height: 100vh;
+  padding: 100px 5% 80px 5%;
+  position: relative;
+  z-index: 10;
+  direction: ltr;
+  box-sizing: border-box;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-desc {
+  font-family: 'Fira Code', monospace;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+
+/* Container Slider Wrapper */
+.projects-slider-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 50px; /* مساحة لزراير التنقل */
+  box-sizing: border-box;
+}
+
+.projects-track-container {
+  width: 100%;
+  overflow: hidden; /* إخفاء باقي الكروت برة العرض */
+  border-radius: 20px;
+  padding: 15px 0;
+}
+
+.projects-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* الكارد في الشاشات الكبيرة (عرض 3 كروت) */
+.project-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 كروت في الشاشة */
+  max-width: calc((100% - 40px) / 3);
+  background: rgba(13, 22, 35, 0.95);
+  border: 1.5px solid rgba(0, 180, 216, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: left;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.project-card:hover {
+  border-color: #00b4d8;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 180, 216, 0.25);
+}
+
+/* صورة المشروع مع الـ Hover */
+.card-img-holder {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #080f18;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.08);
+}
+
+/* Overlay & Button */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 22, 35, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.live-demo-btn {
+  padding: 10px 20px;
+  background: #00b4d8;
+  color: #0d1623;
+  font-weight: bold;
+  font-family: 'Fira Code', monospace;
+  text-decoration: none;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
+}
+
+.live-demo-btn:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+/* محتوى الكارد */
+.card-content {
+  padding: 20px;
+}
+
+.project-title {
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0 0 10px 0;
+  font-family: 'Fira Code', monospace;
+}
+
+.project-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  min-height: 40px;
+}
+
+.project-techs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.project-techs span {
+  font-size: 0.7rem;
+  font-family: 'Fira Code', monospace;
+  padding: 3px 10px;
+  background: rgba(0, 180, 216, 0.1);
+  color: #00b4d8;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  border-radius: 12px;
+}
+
+/* زراير التنقل (Arrows) */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #0d1623;
+  border: 2px solid #00b4d8;
+  color: #00b4d8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+}
+
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+.slider-btn:hover:not(:disabled) {
+  background: #00b4d8;
+  color: #0d1623;
+  box-shadow: 0 0 20px #00b4d8;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn:disabled {
+  opacity: 0.3;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 📱 Responsive للموبايل (عرض كارد واحد فقط) */
+@media (max-width: 768px) {
+  .projects-slider-wrapper {
+    padding: 0 40px;
+  }
+
+  .project-card {
+    flex: 0 0 100%; /* كارد واحد كامل في الموبايل */
+    max-width: 100%;
+  }
+
+  .slider-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+/* ==========================================
+   Modern Glassmorphic Projects & Arrow Buttons
+========================================== */
+
+/* الكارد الزجاجي الفخم (Modern Glassmorphic Card) */
+.project-card {
+  flex: 0 0 calc((100% - 40px) / 3);
+  max-width: calc((100% - 40px) / 3);
+  /* خلفية زجاجية شبه شفافة بألوان حية ومريحة للعين */
+  background: rgba(15, 32, 53, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: left;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+/* Hover Effect بروقان وزيادة إضاءة الزجاج */
+.project-card:hover {
+  transform: translateY(-8px);
+  background: rgba(15, 32, 53, 0.85);
+  border-color: #00b4d8;
+  box-shadow: 0 20px 40px rgba(0, 180, 216, 0.3), inset 0 0 15px rgba(0, 180, 216, 0.1);
+}
+/* حاوية الصورة المخصصة لنسب الشاشات العريضة */
+.card-img-holder {
+  position: relative;
+  width: 100%;
+  height: 240px; /* 👈 زودنا الارتفاع سنة عشان يستوعب الشاشة كاملة */
+  overflow: hidden;
+  background: #fdfbf7; /* 👈 نفس لون خلفية موقع PIZZARO عشان يندمج مع الصورة */
+  border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  /* الحل السحري: بيخلي الصورة كاملة على قد المربع بدون قص وبدون مطة */
+  object-fit: cover; 
+  transition: transform 0.5s ease;
+  box-sizing: border-box;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.04);
+}
+
+/* محتوى الكارد الزجاجي */
+.card-content {
+  padding: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 180, 216, 0.05) 100%);
+}
+
+/* الهيدر: الاسم والزرار */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.project-title {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* زرار Live Demo المضيء في الكارد الزجاجي */
+.live-demo-btn {
+  padding: 7px 16px;
+  background: #00b4d8;
+  color: #0d1623;
+  font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  text-decoration: none;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+}
+
+.live-demo-btn:hover {
+  background: #ffffff;
+  color: #00b4d8;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* وصف المشروع */
+.project-desc {
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  min-height: 44px;
+}
+
+/* كبسولات التقنيات الزجاجية الشفافة */
+.project-techs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.project-techs span {
+  font-size: 0.72rem;
+  font-family: 'Fira Code', monospace;
+  padding: 5px 12px;
+  background: rgba(0, 180, 216, 0.12);
+  color: #7dd3fc;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-techs span {
+  background: rgba(0, 180, 216, 0.25);
+  color: #ffffff;
+  border-color: #00b4d8;
+}
+
+/* 🏹 زراير الأسهم الدائرية المنورة (Arrow Navigation Buttons) */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(13, 22, 35, 0.85);
+  backdrop-filter: blur(10px);
+  border: 2px solid #00b4d8;
+  color: #00b4d8;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+.prev-btn { left: -15px; }
+.next-btn { right: -15px; }
+
+.slider-btn:hover:not(:disabled) {
+  background: #00b4d8;
+  color: #0d1623;
+  box-shadow: 0 0 25px #00b4d8;
+  transform: translateY(-50%) scale(1.12);
+}
+
+.slider-btn:disabled {
+  opacity: 0.25;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive للموبايل */
+@media (max-width: 768px) {
+  .project-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+/* سكشن التواصل كاملاً بالتوسيط */
+.contact-section {
+  width: 100%;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column; /* يضمن إن العنوان ينزل فوق والفورم تحته */
+  align-items: center;    /* سنترة كل حاجة في النص بالضبط */
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* ستايل العنوان الرئيسي (مطابق لباقي السكاشن) */
+.contact-section .section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-section .section-title h2 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+}
+
+.contact-section .section-title h2 span {
+  color: #00b4d8; /* اللون الأزرق المميز لموقعك */
+}
+
+.contact-section .title-underline {
+  width: 70px;
+  height: 4px;
+  background: #00b4d8;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+}
+
+.contact-section {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(13, 22, 35, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 180, 216, 0.25);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.contact-container h2 {
+  color: #00b4d8;
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #e2e8f0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+}
+
+.form-group input, 
+.form-group textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 180, 216, 0.2);
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
+}
+
+/* الحقل المخصص لاسمه ليكون ثابت ومختلف */
+.readonly-input {
+  background: rgba(0, 180, 216, 0.1) !important;
+  color: #00b4d8 !important;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #00b4d8;
+  color: #0d1623;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.submit-btn:hover {
+  background: #48cae4;
+  box-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+  transform: translateY(-2px);
+}
+#contact {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* سنترة أفقية */
+  align-items: center;     /* سنترة رأسية */
+  margin: 0 auto;          /* توسيط الحاوية */
+  box-sizing: border-box;
+}
+
+.contact-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto; /* يضمن تواجده في المنتصف تماماً */
+}
 
 
 
@@ -1190,8 +1750,117 @@ html, body {
 
 
 
+/* ==========================================
+   Navbar-Style Glassmorphic Footer
+========================================== */
+.site-footer {
+  /* خلفية زجاجية مطابقة تماماً لتصميم الـ Navbar */
+  background: rgba(10, 17, 28, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(0, 180, 216, 0.25);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  padding: 20px 0;
+  position: relative;
+  z-index: 100;
+}
 
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* توزيع شبه الـ Navbar: روابط - وسيط - أيقونات/شكر */
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
+/* روابط الفوتر بشريط ناعم شبه الـ Nav */
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-nav li a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.footer-nav li a:hover {
+  color: #00b4d8;
+  text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+}
+
+/* أيقونات السوشيال ميديا بنفس روح الـ Navbar */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px; /* زوايا منحنية شيك بدل الدايرة الكاملة لمظهر عصري */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 180, 216, 0.25);
+  color: #00b4d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #00b4d8;
+  color: #0d1623;
+  box-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+  transform: translateY(-2px);
+}
+
+/* كلمة الشكر في النص أو اليمين */
+.footer-thanks p {
+  color: #dbdfe4;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  margin: 0;
+}
+.footer-thanks p:hover{
+  color: #00b4d8;
+  transform: translateY(-2px);
+  
+}
+
+/* 📱 ريسبونسيف الموبايل: يحافظ عليهم جنب بعض بشياكة */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-nav {
+    gap: 12px;
+  }
+
+  .footer-nav li a {
+    font-size: 0.8rem;
+  }
+}
 
 
 
