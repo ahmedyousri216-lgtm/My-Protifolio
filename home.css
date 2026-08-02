@@ -1,0 +1,1230 @@
+/* إعادة ضبط الهوامش الأساسية ومنع السكرول الأفقي نهائياً */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; /* قفل أي خروج من الأجناب على الموبايل واللاب */
+  position: relative;
+}
+
+/* الخلفية: كحلي وسماوي بتداخل هادي */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #091321, #132743, #005f9e);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 20px;
+}
+
+/* حاوية العناصر المتحركة */
+#particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden; /* ضمان عدم خروج أي كلمة بره الشاشة */
+}
+
+/* الستايل العام للعنصر المتحرك */
+.particle {
+  position: absolute;
+  font-weight: 900;
+  opacity: 0.18;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ألوان التقنيات */
+.html-text { color: #e34c26; }
+.css-text  { color: #264de4; }
+.js-text   { color: #f0db4f; }
+
+/* 1. أنيميشن الصعود (من تحت لفوق) */
+@keyframes floatUp {
+  0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.2; }
+  85% { opacity: 0.2; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* 2. أنيميشن الهبوط (من فوق لتحت) */
+@keyframes floatDown {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.2; }
+  85% { opacity: 0.2; }
+  100% { transform: translateY(105vh) rotate(-360deg); opacity: 0; }
+}
+
+/* 3. أنيميشن من اليسار لليمن (محصورة داخل نطاق الشاشة) */
+@keyframes floatRight {
+  0% { transform: translateX(-15vw) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.2; }
+  85% { opacity: 0.2; }
+  100% { transform: translateX(100vw) rotate(360deg); opacity: 0; }
+}
+
+/* 4. أنيميشن من اليمين لليسار (محصورة داخل نطاق الشاشة) */
+@keyframes floatLeft {
+  0% { transform: translateX(100vw) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.2; }
+  85% { opacity: 0.2; }
+  100% { transform: translateX(-15vw) rotate(-360deg); opacity: 0; }
+}
+
+/* المحتوى الرئيسي زجاجي الشفافية */
+.hero-content {
+  text-align: center;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 50px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  max-width: 650px;
+  width: 100%;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  color: #00b4d8;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.hero-content button {
+  background: #00b4d8;
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 180, 216, 0.3);
+}
+
+.hero-content button:hover {
+  background: #0077b6;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.5);
+}
+
+/* ==========================================
+   Responsive Design (الموبايل والتابلت)
+========================================== */
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 30px 25px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px; /* هوامش متناسقة للموبايل */
+  }
+
+  .hero-content {
+    padding: 25px 15px;
+    border-radius: 16px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .hero-content button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
+}
+
+
+
+/* ==========================================
+   Navbar Main Styling
+========================================== */
+.navbar {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 98%; /* كبرنا العرض عشان يستغل مساحة أكبر */
+  max-width: 1450px; /* زيادة أقصى عرض ليصل للأطراف بشكل لطيف */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 30px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  direction: ltr;
+  transition: all 0.3s ease;
+}
+
+/* 1. اللوجو والاسم */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+}
+
+.brand-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* 2. روابط التنقل */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #00b4d8;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #00b4d8;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* 3. زر الـ CV والصورة والـ Toggle */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-cv {
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 180, 216, 0.3);
+  white-space: nowrap;
+}
+
+.btn-cv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 180, 216, 0.5);
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+}
+
+.nav-profile-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: 2px;
+  background: #00b4d8;
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+  flex-shrink: 0;
+}
+
+.nav-profile-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* زر الـ 3 شرط للموبايل (مخفي في الشاشات الكبيرة) */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.mobile-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================
+   Responsive (التحول للموبايل والـ Dropdown)
+========================================== */
+@media (max-width: 850px) {
+  .navbar {
+    width: 95%;
+    padding: 10px 20px;
+  }
+
+  /* إظهار زر الـ 3 شرط */
+  .mobile-toggle {
+    display: flex;
+  }
+
+  /* تحويل روابط التنقل لقائمة Dropdown زجاجية */
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 27, 42, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    gap: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-15px);
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* كلاس التفعيل عند ضغط الزرار بـ JS */
+  .nav-links.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* أنيميشن حركة الـ 3 شرط لعلامة (X) عند الفتح */
+  .mobile-toggle.active span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-cv {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+  .brand-name {
+    font-size: 1.1rem;
+  }
+}
+
+
+
+
+/* ==========================================
+   Hero Section Styling (Expanded Text Area)
+========================================== */
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 4% 30px 4%; /* تقليل الهوامش الجانبية لاستغلال الشاشة */
+  position: relative;
+  z-index: 10;
+  direction: ltr;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* تقليل المسافة بين الصورة والنص */
+}
+
+.hero-text {
+  flex: 1.6; /* تكبير مساحة النص عشان تاخد راحتها تماماً */
+  text-align: left;
+  transform: translateY(-20px) translateX(-15px); /* تحريك الكلام شمال أكتر */
+}
+
+.hero-hello {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #00b4d8;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+}
+
+/* I am + Ahmed Yusry في سطر واحد ثابت ومستحيل ينزل تحت */
+.hero-name {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  min-height: 65px;
+  white-space: nowrap; /* منع نزول الاسم لسطر جديد نهائياً */
+}
+
+#typing-name {
+  color: #00b4d8;
+  text-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+.hero-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #00b4d8;
+  margin-bottom: 18px;
+  min-height: 40px;
+  white-space: nowrap; /* منع نزول التايتل لسطر جديد برضه */
+}
+
+#typing-title {
+  color: #00b4d8;
+  text-shadow: 0 0 12px rgba(0, 180, 216, 0.3);
+}
+
+.cursor, .cursor-title {
+  display: inline-block;
+  color: #00b4d8;
+  font-weight: 300;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.bio-text {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* الجانب اليمين للصورة */
+.hero-image-wrapper {
+  flex: 0.9;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  transform: translateY(-20px);
+}
+
+.puzzle-grid {
+  width: 320px;
+  height: 320px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 6px;
+  position: relative;
+  border-radius: 20px;
+  transition: gap 0.5s ease, box-shadow .5s ease;
+}
+
+.puzzle-piece {
+  width: 100%;
+  height: 100%;
+  background-image: url("https://iili.io/CSLTADx.jpg");
+  background-size: 320px 320px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1), opacity 3s ease, border-radius 3s ease;
+}
+
+.puzzle-grid.merged {
+  gap: 0px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 180, 216, 0.25);
+}
+
+.puzzle-grid.merged .puzzle-piece {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  outline: 1px solid transparent;
+}
+
+.puzzle-grid.merged .puzzle-piece:nth-child(1) { border-top-left-radius: 20px !important; }
+.puzzle-grid.merged .puzzle-piece:nth-child(3) { border-top-right-radius: 20px !important; }
+.puzzle-grid.merged .puzzle-piece:nth-child(7) { border-bottom-left-radius: 20px !important; }
+.puzzle-grid.merged .puzzle-piece:nth-child(9) { border-bottom-right-radius: 20px !important; }
+
+/* Responsive Adjustments */
+@media (max-width: 968px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-text, .hero-image-wrapper {
+    transform: none;
+    justify-content: center;
+  }
+
+  .hero-text { text-align: center; }
+  .hero-hello { font-size: 2.2rem; }
+  .hero-name { font-size: 2.2rem; white-space: normal; } /* السماح بالتجميع على الموبايل */
+  .hero-title { font-size: 1.4rem; white-space: normal; }
+
+  .puzzle-grid {
+    width: 270px;
+    height: 270px;
+  }
+
+  .puzzle-piece {
+    background-size: 270px 270px;
+  }
+}
+
+/* ==========================================
+   إجبار السكاشن تنزل تحت بعضها تماماً
+========================================== */
+
+/* 1. ضبط الـ Body والمنطقة العروضية */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: block !important; /* ضمان عدم توزيع السكاشن مجاورة */
+}
+
+/* إجبار كل Section إنه ياخد سطر لوحده بعرض الشاشة */
+section {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  clear: both;
+}
+
+/* ==========================================
+   1. Hero Section (قسم الهيرو)
+========================================== */
+.hero-section {
+  min-height: 100vh;
+  padding-top: 250px; /* مسافة فوق عشان الـ Navbar الثابت ما يغطيش الكلام */
+  padding-bottom: 60px;
+  padding-left: 5%;
+  padding-right: 5%;
+  position: relative;
+  z-index: 10;
+  direction: ltr;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex; /* ترتيب محتوى الهيرو الداخلي فقط (النص والصورة) جنب بعض */
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text {
+  flex: 1.4;
+  text-align: left;
+}
+
+.hero-image-wrapper {
+  flex: 0.9;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================
+   2. About Me Section (قسم عني - ينزل تحت)
+========================================== */
+.about-section {
+  min-height: 100vh;
+  padding: 100px 5% 80px 5%;
+  position: relative;
+  z-index: 10;
+  direction: ltr;
+  margin-top: 40px; /* مسافة مريحة تضمن الفصل التام بينه وبين الهيرو */
+}
+
+.about-container {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.sub-title {
+  color: #00b4d8;
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.main-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.main-title span {
+  color: #00b4d8;
+}
+
+.about-description {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto 40px auto;
+}
+
+/* Terminal Window Styling */
+.terminal-window {
+  background: rgba(13, 22, 35, 0.9);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 180, 216, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 180, 216, 0.15);
+  text-align: left;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.terminal-header {
+  background: rgba(8, 14, 23, 0.95);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dots { display: flex; gap: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+}
+
+.terminal-body {
+  padding: 30px;
+  min-height: 220px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   Terminal Line-by-Line & Colorful Syntax Styling
+========================================== */
+
+.terminal-body {
+  padding: 30px;
+  min-height: 220px;
+  font-size: 1.05rem;
+  line-height: 2;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}
+
+/* تأثير ظهور السطر بالكامل */
+.term-line {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: lineFadeIn 0.4s ease forwards;
+}
+
+@keyframes lineFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ألوان الأسطر والكلمات المختلفة */
+.term-prompt { color: #2ecc71; font-weight: bold; } /* أخضر الـ Terminal */
+.term-cmd { color: #ffffff; font-weight: 600; }     /* أبيض للأمر whoami */
+
+/* السطر 1: Hi, I'm Ahmed Yousry (أزرق نيون) */
+.term-line-1 { color: #00b4d8; font-weight: 700; font-size: 1.15rem; }
+
+/* السطر 2: Front-End Developer (أخضر نيون فاتح) */
+.term-line-2 { color: #2ecc71; font-weight: 600; }
+
+/* السطر 3: I create modern and responsive websites (بنفسجي / وردي نيون) */
+.term-line-3 { color: #e056fd; }
+
+/* السطر 4: ألوان اللغات والمهارات كل كلمة بلون مميز */
+.skill-html {
+  color: #e44d26; /* برتقالي HTML */
+  font-weight: bold;
+}
+
+.skill-css {
+  color: #264de4; /* أزرق CSS */
+  font-weight: bold;
+}
+
+.skill-js {
+  color: #f7df1e; /* أصفر JavaScript */
+  font-weight: bold;
+}
+
+.skill-separator {
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 4px;
+}
+
+/* ==========================================
+   Education Git Timeline Section
+========================================== */
+.education-section {
+  min-height: 100vh;
+  padding: 100px 5% 80px 5%;
+  position: relative;
+  z-index: 10;
+  direction: ltr;
+  box-sizing: border-box;
+}
+
+.education-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Timeline Layout */
+.git-timeline {
+  position: relative;
+  margin-top: 60px;
+  padding: 20px 0;
+}
+
+/* الخط الرأسي المضيء (The Git Branch) */
+.git-branch-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px; /* على الشمال في الموبايل، وفي السنتر في الشاشات الكبيرة */
+  width: 3px;
+  background: linear-gradient(180deg, #00b4d8 0%, #a855f7 50%, rgba(0, 180, 216, 0.2) 100%);
+  box-shadow: 0 0 12px rgba(0, 180, 216, 0.5);
+  border-radius: 3px;
+}
+
+/* Commit Node Container */
+.git-commit-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 45px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.git-commit-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Git Node Dot */
+.git-node {
+  position: absolute;
+  left: 9px;
+  top: 15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #0d1623;
+  border: 2px solid #00b4d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+  z-index: 2;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.git-commit-item:hover .git-node {
+  transform: scale(1.25);
+  background: #00b4d8;
+  box-shadow: 0 0 25px #00b4d8;
+}
+
+.node-inner {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #00b4d8;
+}
+
+.git-commit-item:hover .node-inner {
+  background: #ffffff;
+}
+
+/* Glassmorphism Commit Card */
+.commit-card {
+  margin-left: 60px;
+  width: 100%;
+  background: rgba(13, 22, 35, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 180, 216, 0.25);
+  border-radius: 14px;
+  padding: 25px 30px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.commit-card:hover {
+  border-color: rgba(0, 180, 216, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 180, 216, 0.2);
+}
+
+.commit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.commit-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #2ecc71; /* أخضر Git */
+  background: rgba(46, 204, 113, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.commit-date {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #00b4d8;
+  font-weight: 600;
+}
+
+.commit-title {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.commit-desc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+/* Tech Badges */
+.commit-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.tech-tag.html { color: #e44d26; border-color: rgba(228, 77, 38, 0.3); background: rgba(228, 77, 38, 0.1); }
+.tech-tag.css { color: #264de4; border-color: rgba(38, 77, 228, 0.3); background: rgba(38, 77, 228, 0.1); }
+.tech-tag.js { color: #f7df1e; border-color: rgba(247, 223, 30, 0.3); background: rgba(247, 223, 30, 0.1); }
+.tech-tag.bootstrap { color: #7952b3; border-color: rgba(121, 82, 179, 0.3); background: rgba(121, 82, 179, 0.1); }
+.tech-tag.figma { color: #f24e1e; border-color: rgba(242, 78, 30, 0.3); background: rgba(242, 78, 30, 0.1); }
+.tech-tag.cs { color: #a855f7; border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.1); }
+.tech-tag.dfd { color: #00b4d8; border-color: rgba(0, 180, 216, 0.3); background: rgba(0, 180, 216, 0.1); }
+.tech-tag.business { color: #2ecc71; border-color: rgba(46, 204, 113, 0.3); background: rgba(46, 204, 113, 0.1); }
+
+@media (max-width: 600px) {
+  .commit-card { padding: 18px; margin-left: 50px; }
+  .commit-title { font-size: 1.1rem; }
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   Global Overflow Fix (منع الهزة الأفقية)
+========================================== */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* ==========================================
+   Big Circular Core & Scaling Orbit Nodes
+========================================== */
+.skills-section {
+  min-height: 100vh;
+  padding: 100px 5% 80px 5%;
+  position: relative;
+  z-index: 10;
+  direction: ltr;
+  box-sizing: border-box;
+  overflow: hidden; /* يمنع خروج العناصر يمين أو شمال */
+}
+
+.skills-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.spinner-instruction {
+  font-family: 'Fira Code', monospace;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+/* مساحة المسرح الكلي */
+.spinner-system {
+  position: relative;
+  width: 580px; 
+  height: 580px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+/* الدايرة الرئيسية الكبيرة في النص */
+.spinner-core-big {
+  position: relative;
+  width: 140px; 
+  height: 140px;
+  border-radius: 50%;
+  background: #0d1623;
+  border: 3px solid #00b4d8;
+  color: #00b4d8;
+  cursor: pointer;
+  outline: none;
+  z-index: 25;
+  box-shadow: 0 0 35px rgba(0, 180, 216, 0.4), inset 0 0 20px rgba(0, 180, 216, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.spinner-core-big:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 50px #00b4d8, inset 0 0 25px #00b4d8;
+}
+
+.spinner-core-big.spinning {
+  animation: corePulse 0.4s infinite alternate;
+  border-color: #a855f7;
+  color: #a855f7;
+  box-shadow: 0 0 50px #a855f7;
+}
+
+.core-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Fira Code', monospace;
+  font-weight: bold;
+  font-size: 0.88rem;
+}
+
+.core-content i { font-size: 1.9rem; }
+
+/* 🔥 الحلقة الدائرية الخارجية المضيئة (Glowing Orbit Ring) */
+.orbit-ring {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 2px solid #00b4d8; /* لون النيون الرئيسي */
+  background: rgba(0, 180, 216, 0.02); /* خلفية زجاجية خفيفة جداً */
+  /* تأثير التوهج المضيء (Neon Glow) */
+  box-shadow: 0 0 25px rgba(0, 180, 216, 0.6),
+              inset 0 0 20px rgba(0, 180, 216, 0.3);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  animation: ringPulse 3s infinite alternate ease-in-out;
+}
+
+/* أنيميشن نبض الإضاءة للحلقة الدائرية الكبيرة */
+@keyframes ringPulse {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4), inset 0 0 15px rgba(0, 180, 216, 0.2);
+    border-color: rgba(0, 180, 216, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(0, 180, 216, 0.9), inset 0 0 25px rgba(0, 180, 216, 0.5);
+    border-color: #00b4d8;
+  }
+}
+
+/* Skills Orbit Container */
+.skills-orbit-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* دواير المهارات الـ 6 (Extra Large) */
+.orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  margin-left: -60px;
+  border-radius: 50%;
+  background: rgba(13, 22, 35, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.node-icon { font-size: 2rem; }
+.node-label { font-size: 0.85rem; font-family: 'Fira Code', monospace; font-weight: bold; margin-top: 2px; color: #fff; }
+.node-desc { font-size: 0.68rem; color: rgba(255, 255, 255, 0.75); font-family: sans-serif; display: block; margin-top: 1px; }
+
+/* تفعيل الدواير وتكبيرها واستقرارها على المدار المضيء */
+.spinner-system.active .orbit-node {
+  opacity: 1;
+  transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1);
+}
+
+/* Hover Effect لكل مهارة */
+.orbit-node.html { color: #e44d26; }
+.orbit-node.html:hover { border-color: #e44d26; box-shadow: 0 0 30px #e44d26; transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1.18); }
+
+.orbit-node.css { color: #264de4; }
+.orbit-node.css:hover { border-color: #264de4; box-shadow: 0 0 30px #264de4; transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1.18); }
+
+.orbit-node.js { color: #f7df1e; }
+.orbit-node.js:hover { border-color: #f7df1e; box-shadow: 0 0 30px #f7df1e; transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1.18); }
+
+.orbit-node.bootstrap { color: #7952b3; }
+.orbit-node.bootstrap:hover { border-color: #7952b3; box-shadow: 0 0 30px #7952b3; transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1.18); }
+
+.orbit-node.git { color: #f05032; }
+.orbit-node.git:hover { border-color: #f05032; box-shadow: 0 0 30px #f05032; transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1.18); }
+
+.orbit-node.github { color: #ffffff; }
+.orbit-node.github:hover { border-color: #ffffff; box-shadow: 0 0 30px #ffffff; transform: rotate(calc(var(--i) * (360deg / 6))) translate(250px) rotate(calc(var(--i) * (-360deg / 6))) scale(1.18); }
+
+@keyframes corePulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+/* 📱 Responsive للموبايل مع المدار المضيء وإظهار النصوص */
+@media (max-width: 600px) {
+  .spinner-system { 
+    width: 380px; 
+    height: 380px; 
+  }
+  .orbit-ring { 
+    width: 300px; 
+    height: 300px; 
+  }
+  .spinner-core-big { 
+    width: 105px; 
+    height: 105px; 
+  }
+  .core-content i { font-size: 1.5rem; }
+  .core-content span { font-size: 0.75rem; }
+
+  .orbit-node { 
+    width: 85px; 
+    height: 85px; 
+    margin-top: -42.5px; 
+    margin-left: -42.5px;
+    padding: 4px;
+  }
+  .node-icon { font-size: 1.3rem; }
+  .node-label { font-size: 0.68rem; margin-top: 1px; }
+  
+  .node-desc { 
+    display: block !important; 
+    font-size: 0.52rem; 
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 2px;
+  }
+
+  .spinner-system.active .orbit-node {
+    transform: rotate(calc(var(--i) * (360deg / 6))) translate(150px) rotate(calc(var(--i) * (-360deg / 6))) scale(1);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   تثبيت الخلفية المتحركة على كامل حجم الصفحة
+========================================== */
+#particles-container, 
+canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1 !important;
+  pointer-events: none;
+}
+/* منع الهزّة والخروج الأُفقي للشاشة ككل */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <!DOCTYPE html>
+<html lang="ar" dir="rtl"> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Template</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <!-- حاوية العناصر المتحركة في الخلفية فقط -->
+  <div id="particles-container"></div>
+
+  
+ <!-- Navbar شريط التنقل -->
+<nav class="navbar">
+  <!-- الجزء الأيمن: اللوجو والاسم -->
+  <div class="nav-brand">
+    <div class="logo-icon">💻</div>
+    <span class="brand-name">My Portfolio</span>
+  </div>
+  <!-- الجزء الأوسط: روابط التنقل (للشاشات الكبيرة) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">My Projects</a></li>
+    <li><a href="#contact">Contact Me</a></li>
+  </ul>
+  <!-- الجزء الأيسر: زر الـ CV والصورة الشخصية + زرار الموبايل -->
+  <div class="nav-user">
+    <a href="CV.pdf" download class="btn-cv">Download CV</a>
+    <div class="nav-profile-img">
+      <img src="https://iili.io/CSLTADx.jpg" alt="Profile">
+    </div>
+    <!-- زرار الـ 3 شرط للموبايل -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+
+
+
+<!-- Hero Section -->
+<section class="hero-section" id="home">
+  <div class="hero-container">
+    
+    <!-- Left Side: Refined Typography -->
+    <div class="hero-text">
+      <h2 class="hero-hello">Hello!</h2>
+      
+      <!-- I am ثابتة والاسم أحمد يسري بيتكتب ويمسح -->
+      <h1 class="hero-name">
+        I am <span id="typing-name"></span><span class="cursor">|</span>
+      </h1>
+      
+      <!-- التايتل بيتكتب ويمسح تحتها -->
+      <h3 class="hero-title">
+        <span id="typing-title"></span><span class="cursor-title">|</span>
+      </h3>
+      
+      <p class="bio-text">
+        Crafting modern, responsive, and intuitive web experiences with precision and passion.
+      </p>
+    </div>
+
+    <!-- Right Side: Puzzle Image -->
+    <div class="hero-image-wrapper">
+      <div class="puzzle-grid" id="puzzleGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<!-- 2. About Me Section (تحت الهيرو مباشرة) -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <span class="sub-title">About Me</span>
+    <h2 class="main-title">About <span>Me</span></h2>
+    
+    <p class="about-description">
+      I'm a passionate Front-End Developer who loves building modern, responsive, and user-friendly websites. I focus on creating clean designs and smooth user experiences using HTML, CSS and JavaScript.
+    </p>
+
+    <!-- Terminal Window -->
+    <div class="terminal-window" id="terminalWindow">
+      <div class="terminal-header">
+        <div class="dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="terminal-title">Ahmed@portfolio: ~</div>
+      </div>
+      <div class="terminal-body" id="terminalBody"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Education / Git Timeline Section -->
+<section class="education-section" id="education">
+  <div class="education-container">
+    <span class="sub-title">My Journey</span>
+    <h2 class="main-title">Education & <span>Milestones</span></h2>
+
+    <!-- Git Branch Line Container -->
+    <div class="git-timeline">
+      <div class="git-branch-line"></div>
+
+      <!-- Commit Item 1: NTI Training -->
+      <div class="git-commit-item">
+        <div class="git-node">
+          <span class="node-inner"></span>
+        </div>
+        <div class="commit-card">
+          <div class="commit-header">
+            <span class="commit-tag">git commit -m "feat: NTI Web Design Training"</span>
+            <span class="commit-date">2026</span>
+          </div>
+          <h3 class="commit-title">National Telecommunication Institute (NTI)</h3>
+          <p class="commit-desc">
+            Completed an intensive professional training program focused on modern Web Design, responsive UI creation, and front-end development standards.
+          </p>
+          <div class="commit-techs">
+            <span class="tech-tag html">HTML5</span>
+            <span class="tech-tag css">CSS3</span>
+            <span class="tech-tag js">JavaScript</span>
+            <span class="tech-tag bootstrap">Bootstrap</span>
+            <span class="tech-tag figma">Figma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commit Item 2: Self-Learning & Frontend Specialization (جديد 🔥) -->
+      <div class="git-commit-item">
+        <div class="git-node">
+          <span class="node-inner"></span>
+        </div>
+        <div class="commit-card">
+          <div class="commit-header">
+            <span class="commit-tag">git commit -m "feat: Frontend Architecture"</span>
+            <span class="commit-date">2025 - 2026</span>
+          </div>
+          <h3 class="commit-title">Advanced Front-End Development</h3>
+          <p class="commit-desc">
+            Mastered creating interactive user interfaces, modular CSS glassmorphism styling, responsive layouts, DOM manipulation, and browser storage management.
+          </p>
+          <div class="commit-techs">
+            <span class="tech-tag js">ES6+ JS</span>
+            <span class="tech-tag css">Glassmorphism</span>
+            <span class="tech-tag bootstrap">Flex/Grid Layouts</span>
+            <span class="tech-tag dfd">UI/UX Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commit Item 3: Academic Studies -->
+      <div class="git-commit-item">
+        <div class="git-node">
+          <span class="node-inner"></span>
+        </div>
+        <div class="commit-card">
+          <div class="commit-header">
+            <span class="commit-tag">git commit -m "feat: Academic Degree"</span>
+            <span class="commit-date">Present</span>
+          </div>
+          <h3 class="commit-title">Computer Science & Business Coursework</h3>
+          <p class="commit-desc">
+            Studying core computer science fundamentals, data structures, algorithms, Data Flow Diagrams (DFD), consumer behavior, and modern web application development.
+          </p>
+          <div class="commit-techs">
+            <span class="tech-tag cs">CS Fundamentals</span>
+            <span class="tech-tag dfd">DFD & Systems</span>
+            <span class="tech-tag business">Business Admin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commit Item 4: Real-World Web Projects (جديد 🔥) -->
+      <div class="git-commit-item">
+        <div class="git-node">
+          <span class="node-inner"></span>
+        </div>
+        <div class="commit-card">
+          <div class="commit-header">
+            <span class="commit-tag">git commit -m "feat: Practical Web Applications"</span>
+            <span class="commit-date">Ongoing</span>
+          </div>
+          <h3 class="commit-title">Web Application Engineering</h3>
+          <p class="commit-desc">
+            Designed and built full web applications such as Emergency Awareness platforms, interactive family blogs, and custom restaurant menu interfaces with clean performance.
+          </p>
+          <div class="commit-techs">
+            <span class="tech-tag html">Web Apps</span>
+            <span class="tech-tag js">Dynamic Components</span>
+            <span class="tech-tag bootstrap">Responsive Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- Skills Section - Expanded Circular Skill Orbit -->
+<section class="skills-section" id="skills">
+  <div class="skills-container">
+    <span class="sub-title">Interactive Core</span>
+    <h2 class="main-title">Skill <span>Spinner</span></h2>
+    <p class="spinner-instruction">Click the core to launch tech skills</p>
+
+    <!-- Spinner System Container -->
+    <div class="spinner-system">
+      
+      <!-- Big Central Core Button -->
+      <button class="spinner-core-big" id="spinnerCore">
+        <div class="core-glow"></div>
+        <div class="core-content">
+          <i class="fas fa-bolt"></i>
+          <span>SPIN NOW</span>
+        </div>
+      </button>
+
+      <!-- Skill Orbit Nodes (6 Extra Large Skills) -->
+      <div class="skills-orbit-container" id="orbitContainer">
+
+        <!-- HTML5 -->
+        <div class="orbit-node html" style="--i: 0;">
+          <div class="node-icon"><i class="fab fa-html5"></i></div>
+          <span class="node-label">HTML5</span>
+          <span class="node-desc">Web Structure</span>
+        </div>
+
+        <!-- CSS3 -->
+        <div class="orbit-node css" style="--i: 1;">
+          <div class="node-icon"><i class="fab fa-css3-alt"></i></div>
+          <span class="node-label">CSS3</span>
+          <span class="node-desc">Modern Styling</span>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="orbit-node js" style="--i: 2;">
+          <div class="node-icon"><i class="fab fa-js"></i></div>
+          <span class="node-label">JavaScript</span>
+          <span class="node-desc">Interactive Logic</span>
+        </div>
+
+        <!-- Bootstrap -->
+        <div class="orbit-node bootstrap" style="--i: 3;">
+          <div class="node-icon"><i class="fab fa-bootstrap"></i></div>
+          <span class="node-label">Bootstrap</span>
+          <span class="node-desc">Responsive UI</span>
+        </div>
+
+        <!-- Git -->
+        <div class="orbit-node git" style="--i: 4;">
+          <div class="node-icon"><i class="fab fa-git-alt"></i></div>
+          <span class="node-label">Git</span>
+          <span class="node-desc">Version Control</span>
+        </div>
+
+        <!-- GitHub -->
+        <div class="orbit-node github" style="--i: 5;">
+          <div class="node-icon"><i class="fab fa-github"></i></div>
+          <span class="node-label">GitHub</span>
+          <span class="node-desc">Code Hosting</span>
+        </div>
+
+      </div>
+
+      <!-- Outer Decorative Orbit Line -->
+      <div class="orbit-ring"></div>
+
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- ربط ملف الـ JS الخارجي -->
+  <script src="home.js"></script>
+</body>
+</html>
