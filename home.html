@@ -2,301 +2,500 @@
 <html lang="en">
 <!-- <!DOCTYPE html>
 <html lang="ar" dir="rtl"> -->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Background Template</title>
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
   <!-- حاوية العناصر المتحركة في الخلفية فقط -->
   <div id="particles-container"></div>
 
+
+  <!-- Navbar شريط التنقل -->
+  <nav class="navbar">
+    <!-- الجزء الأيمن: اللوجو والاسم -->
+    <div class="nav-brand">
+      <div class="logo-icon">💻</div>
+      <span class="brand-name">My Portfolio</span>
+    </div>
+    <!-- الجزء الأوسط: روابط التنقل (للشاشات الكبيرة) -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">My Projects</a></li>
+      <li><a href="#contact">Contact Me</a></li>
+    </ul>
+    <!-- الجزء الأيسر: زر الـ CV والصورة الشخصية + زرار الموبايل -->
+   <div class="nav-user">
+  <!-- زرار تحميل الـ CV متعدل ومربوط بالملف CV1.pdf -->
+  <a href="CV1.pdf" download="CV1.pdf" class="btn-cv">
+    Download CV <i class="fas fa-download"></i>
+  </a>
   
- <!-- Navbar شريط التنقل -->
-<nav class="navbar">
-  <!-- الجزء الأيمن: اللوجو والاسم -->
-  <div class="nav-brand">
-    <div class="logo-icon">💻</div>
-    <span class="brand-name">My Portfolio</span>
+  <div class="nav-profile-img">
+    <img src="https://iili.io/CSLTADx.jpg" alt="Profile">
   </div>
-  <!-- الجزء الأوسط: روابط التنقل (للشاشات الكبيرة) -->
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">My Projects</a></li>
-    <li><a href="#contact">Contact Me</a></li>
-  </ul>
-  <!-- الجزء الأيسر: زر الـ CV والصورة الشخصية + زرار الموبايل -->
-  <div class="nav-user">
-    <a href="CV.pdf" download class="btn-cv">Download CV</a>
-    <div class="nav-profile-img">
-      <img src="https://iili.io/CSLTADx.jpg" alt="Profile">
-    </div>
-    <!-- زرار الـ 3 شرط للموبايل -->
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</nav>
-
-
-
-
-<!-- Hero Section -->
-<section class="hero-section" id="home">
-  <div class="hero-container">
-    
-    <!-- Left Side: Refined Typography -->
-    <div class="hero-text">
-      <h2 class="hero-hello">Hello!</h2>
-      
-      <!-- I am ثابتة والاسم أحمد يسري بيتكتب ويمسح -->
-      <h1 class="hero-name">
-        I am <span id="typing-name"></span><span class="cursor">|</span>
-      </h1>
-      
-      <!-- التايتل بيتكتب ويمسح تحتها -->
-      <h3 class="hero-title">
-        <span id="typing-title"></span><span class="cursor-title">|</span>
-      </h3>
-      
-      <p class="bio-text">
-        Crafting modern, responsive, and intuitive web experiences with precision and passion.
-      </p>
-    </div>
-
-    <!-- Right Side: Puzzle Image -->
-    <div class="hero-image-wrapper">
-      <div class="puzzle-grid" id="puzzleGrid"></div>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-<!-- 2. About Me Section (تحت الهيرو مباشرة) -->
-<section class="about-section" id="about">
-  <div class="about-container">
-    <span class="sub-title">About Me</span>
-    <h2 class="main-title">About <span>Me</span></h2>
-    
-    <p class="about-description">
-      I'm a passionate Front-End Developer who loves building modern, responsive, and user-friendly websites. I focus on creating clean designs and smooth user experiences using HTML, CSS and JavaScript.
-    </p>
-
-    <!-- Terminal Window -->
-    <div class="terminal-window" id="terminalWindow">
-      <div class="terminal-header">
-        <div class="dots">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-        </div>
-        <div class="terminal-title">Ahmed@portfolio: ~</div>
-      </div>
-      <div class="terminal-body" id="terminalBody"></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Education / Git Timeline Section -->
-<section class="education-section" id="education">
-  <div class="education-container">
-    <span class="sub-title">My Journey</span>
-    <h2 class="main-title">Education & <span>Milestones</span></h2>
-
-    <!-- Git Branch Line Container -->
-    <div class="git-timeline">
-      <div class="git-branch-line"></div>
-
-      <!-- Commit Item 1: NTI Training -->
-      <div class="git-commit-item">
-        <div class="git-node">
-          <span class="node-inner"></span>
-        </div>
-        <div class="commit-card">
-          <div class="commit-header">
-            <span class="commit-tag">git commit -m "feat: NTI Web Design Training"</span>
-            <span class="commit-date">2026</span>
-          </div>
-          <h3 class="commit-title">National Telecommunication Institute (NTI)</h3>
-          <p class="commit-desc">
-            Completed an intensive professional training program focused on modern Web Design, responsive UI creation, and front-end development standards.
-          </p>
-          <div class="commit-techs">
-            <span class="tech-tag html">HTML5</span>
-            <span class="tech-tag css">CSS3</span>
-            <span class="tech-tag js">JavaScript</span>
-            <span class="tech-tag bootstrap">Bootstrap</span>
-            <span class="tech-tag figma">Figma</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Commit Item 2: Self-Learning & Frontend Specialization (جديد 🔥) -->
-      <div class="git-commit-item">
-        <div class="git-node">
-          <span class="node-inner"></span>
-        </div>
-        <div class="commit-card">
-          <div class="commit-header">
-            <span class="commit-tag">git commit -m "feat: Frontend Architecture"</span>
-            <span class="commit-date">2025 - 2026</span>
-          </div>
-          <h3 class="commit-title">Advanced Front-End Development</h3>
-          <p class="commit-desc">
-            Mastered creating interactive user interfaces, modular CSS glassmorphism styling, responsive layouts, DOM manipulation, and browser storage management.
-          </p>
-          <div class="commit-techs">
-            <span class="tech-tag js">ES6+ JS</span>
-            <span class="tech-tag css">Glassmorphism</span>
-            <span class="tech-tag bootstrap">Flex/Grid Layouts</span>
-            <span class="tech-tag dfd">UI/UX Design</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Commit Item 3: Academic Studies -->
-      <div class="git-commit-item">
-        <div class="git-node">
-          <span class="node-inner"></span>
-        </div>
-        <div class="commit-card">
-          <div class="commit-header">
-            <span class="commit-tag">git commit -m "feat: Academic Degree"</span>
-            <span class="commit-date">Present</span>
-          </div>
-          <h3 class="commit-title">Computer Science & Business Coursework</h3>
-          <p class="commit-desc">
-            Studying core computer science fundamentals, data structures, algorithms, Data Flow Diagrams (DFD), consumer behavior, and modern web application development.
-          </p>
-          <div class="commit-techs">
-            <span class="tech-tag cs">CS Fundamentals</span>
-            <span class="tech-tag dfd">DFD & Systems</span>
-            <span class="tech-tag business">Business Admin</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Commit Item 4: Real-World Web Projects (جديد 🔥) -->
-      <div class="git-commit-item">
-        <div class="git-node">
-          <span class="node-inner"></span>
-        </div>
-        <div class="commit-card">
-          <div class="commit-header">
-            <span class="commit-tag">git commit -m "feat: Practical Web Applications"</span>
-            <span class="commit-date">Ongoing</span>
-          </div>
-          <h3 class="commit-title">Web Application Engineering</h3>
-          <p class="commit-desc">
-            Designed and built full web applications such as Emergency Awareness platforms, interactive family blogs, and custom restaurant menu interfaces with clean performance.
-          </p>
-          <div class="commit-techs">
-            <span class="tech-tag html">Web Apps</span>
-            <span class="tech-tag js">Dynamic Components</span>
-            <span class="tech-tag bootstrap">Responsive Design</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-<!-- Skills Section - Expanded Circular Skill Orbit -->
-<section class="skills-section" id="skills">
-  <div class="skills-container">
-    <span class="sub-title">Interactive Core</span>
-    <h2 class="main-title">Skill <span>Spinner</span></h2>
-    <p class="spinner-instruction">Click the core to launch tech skills</p>
-
-    <!-- Spinner System Container -->
-    <div class="spinner-system">
-      
-      <!-- Big Central Core Button -->
-      <button class="spinner-core-big" id="spinnerCore">
-        <div class="core-glow"></div>
-        <div class="core-content">
-          <i class="fas fa-bolt"></i>
-          <span>SPIN NOW</span>
-        </div>
+</div>
+      <!-- زرار الـ 3 شرط للموبايل -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+    </div>
+  </nav>
 
-      <!-- Skill Orbit Nodes (6 Extra Large Skills) -->
-      <div class="skills-orbit-container" id="orbitContainer">
 
-        <!-- HTML5 -->
-        <div class="orbit-node html" style="--i: 0;">
-          <div class="node-icon"><i class="fab fa-html5"></i></div>
-          <span class="node-label">HTML5</span>
-          <span class="node-desc">Web Structure</span>
+
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <div class="hero-container">
+
+      <!-- Left Side: Refined Typography -->
+      <div class="hero-text">
+        <h2 class="hero-hello">Hello!</h2>
+
+        <!-- I am ثابتة والاسم أحمد يسري بيتكتب ويمسح -->
+        <h1 class="hero-name">
+          I am <span id="typing-name"></span><span class="cursor">|</span>
+        </h1>
+
+        <!-- التايتل بيتكتب ويمسح تحتها -->
+        <h3 class="hero-title">
+          <span id="typing-title"></span><span class="cursor-title">|</span>
+        </h3>
+
+        <p class="bio-text">
+          Crafting modern, responsive, and intuitive web experiences with precision and passion.
+        </p>
+      </div>
+
+      <!-- Right Side: Puzzle Image -->
+      <div class="hero-image-wrapper">
+        <div class="puzzle-grid" id="puzzleGrid"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+  <!-- 2. About Me Section (تحت الهيرو مباشرة) -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <span class="sub-title">About Me</span>
+      <h2 class="main-title">About <span>Me</span></h2>
+
+      <p class="about-description">
+        I'm a passionate Front-End Developer who loves building modern, responsive, and user-friendly websites. I focus
+        on creating clean designs and smooth user experiences using HTML, CSS and JavaScript.
+      </p>
+
+      <!-- Terminal Window -->
+      <div class="terminal-window" id="terminalWindow">
+        <div class="terminal-header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-title">Ahmed@portfolio: ~</div>
+        </div>
+        <div class="terminal-body" id="terminalBody"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Education / Git Timeline Section -->
+  <section class="education-section" id="education">
+    <div class="education-container">
+      <span class="sub-title">My Journey</span>
+      <h2 class="main-title">Education & <span>Milestones</span></h2>
+
+      <!-- Git Branch Line Container -->
+      <div class="git-timeline">
+        <div class="git-branch-line"></div>
+
+        <!-- Commit Item 1: NTI Training -->
+        <div class="git-commit-item">
+          <div class="git-node">
+            <span class="node-inner"></span>
+          </div>
+          <div class="commit-card">
+            <div class="commit-header">
+              <span class="commit-tag">git commit -m "feat: NTI Web Design Training"</span>
+              <span class="commit-date">2026</span>
+            </div>
+            <h3 class="commit-title">National Telecommunication Institute (NTI)</h3>
+            <p class="commit-desc">
+              Completed an intensive professional training program focused on modern Web Design, responsive UI creation,
+              and front-end development standards.
+            </p>
+            <div class="commit-techs">
+              <span class="tech-tag html">HTML5</span>
+              <span class="tech-tag css">CSS3</span>
+              <span class="tech-tag js">JavaScript</span>
+              <span class="tech-tag bootstrap">Bootstrap</span>
+              <span class="tech-tag figma">Figma</span>
+            </div>
+          </div>
         </div>
 
-        <!-- CSS3 -->
-        <div class="orbit-node css" style="--i: 1;">
-          <div class="node-icon"><i class="fab fa-css3-alt"></i></div>
-          <span class="node-label">CSS3</span>
-          <span class="node-desc">Modern Styling</span>
+        <!-- Commit Item 2: Self-Learning & Frontend Specialization (جديد 🔥) -->
+        <div class="git-commit-item">
+          <div class="git-node">
+            <span class="node-inner"></span>
+          </div>
+          <div class="commit-card">
+            <div class="commit-header">
+              <span class="commit-tag">git commit -m "feat: Frontend Architecture"</span>
+              <span class="commit-date">2025 - 2026</span>
+            </div>
+            <h3 class="commit-title">Advanced Front-End Development</h3>
+            <p class="commit-desc">
+              Mastered creating interactive user interfaces, modular CSS glassmorphism styling, responsive layouts, DOM
+              manipulation, and browser storage management.
+            </p>
+            <div class="commit-techs">
+              <span class="tech-tag js">ES6+ JS</span>
+              <span class="tech-tag css">Glassmorphism</span>
+              <span class="tech-tag bootstrap">Flex/Grid Layouts</span>
+              <span class="tech-tag dfd">UI/UX Design</span>
+            </div>
+          </div>
         </div>
 
-        <!-- JavaScript -->
-        <div class="orbit-node js" style="--i: 2;">
-          <div class="node-icon"><i class="fab fa-js"></i></div>
-          <span class="node-label">JavaScript</span>
-          <span class="node-desc">Interactive Logic</span>
+        <!-- Commit Item 3: Academic Studies -->
+        <div class="git-commit-item">
+          <div class="git-node">
+            <span class="node-inner"></span>
+          </div>
+          <div class="commit-card">
+            <div class="commit-header">
+              <span class="commit-tag">git commit -m "feat: Academic Degree"</span>
+              <span class="commit-date">Present</span>
+            </div>
+            <h3 class="commit-title">Computer Science & Business Coursework</h3>
+            <p class="commit-desc">
+              Studying core computer science fundamentals, data structures, algorithms, Data Flow Diagrams (DFD),
+              consumer behavior, and modern web application development.
+            </p>
+            <div class="commit-techs">
+              <span class="tech-tag cs">CS Fundamentals</span>
+              <span class="tech-tag dfd">DFD & Systems</span>
+              <span class="tech-tag business">Business Admin</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Bootstrap -->
-        <div class="orbit-node bootstrap" style="--i: 3;">
-          <div class="node-icon"><i class="fab fa-bootstrap"></i></div>
-          <span class="node-label">Bootstrap</span>
-          <span class="node-desc">Responsive UI</span>
-        </div>
-
-        <!-- Git -->
-        <div class="orbit-node git" style="--i: 4;">
-          <div class="node-icon"><i class="fab fa-git-alt"></i></div>
-          <span class="node-label">Git</span>
-          <span class="node-desc">Version Control</span>
-        </div>
-
-        <!-- GitHub -->
-        <div class="orbit-node github" style="--i: 5;">
-          <div class="node-icon"><i class="fab fa-github"></i></div>
-          <span class="node-label">GitHub</span>
-          <span class="node-desc">Code Hosting</span>
+        <!-- Commit Item 4: Real-World Web Projects (جديد 🔥) -->
+        <div class="git-commit-item">
+          <div class="git-node">
+            <span class="node-inner"></span>
+          </div>
+          <div class="commit-card">
+            <div class="commit-header">
+              <span class="commit-tag">git commit -m "feat: Practical Web Applications"</span>
+              <span class="commit-date">Ongoing</span>
+            </div>
+            <h3 class="commit-title">Web Application Engineering</h3>
+            <p class="commit-desc">
+              Designed and built full web applications such as Emergency Awareness platforms, interactive family blogs,
+              and custom restaurant menu interfaces with clean performance.
+            </p>
+            <div class="commit-techs">
+              <span class="tech-tag html">Web Apps</span>
+              <span class="tech-tag js">Dynamic Components</span>
+              <span class="tech-tag bootstrap">Responsive Design</span>
+            </div>
+          </div>
         </div>
 
       </div>
-
-      <!-- Outer Decorative Orbit Line -->
-      <div class="orbit-ring"></div>
-
     </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+  <!-- Skills Section - Expanded Circular Skill Orbit -->
+  <section class="skills-section" id="skills">
+    <div class="skills-container">
+      <span class="sub-title">Interactive Core</span>
+      <h2 class="main-title">Skill <span>Spinner</span></h2>
+      <p class="spinner-instruction">Click the core to launch tech skills</p>
+
+      <!-- Spinner System Container -->
+      <div class="spinner-system">
+
+        <!-- Big Central Core Button -->
+        <button class="spinner-core-big" id="spinnerCore">
+          <div class="core-glow"></div>
+          <div class="core-content">
+            <i class="fas fa-bolt"></i>
+            <span>SPIN NOW</span>
+          </div>
+        </button>
+
+        <!-- Skill Orbit Nodes (6 Extra Large Skills) -->
+        <div class="skills-orbit-container" id="orbitContainer">
+
+          <!-- HTML5 -->
+          <div class="orbit-node html" style="--i: 0;">
+            <div class="node-icon"><i class="fab fa-html5"></i></div>
+            <span class="node-label">HTML5</span>
+            <span class="node-desc">Web Structure</span>
+          </div>
+
+          <!-- CSS3 -->
+          <div class="orbit-node css" style="--i: 1;">
+            <div class="node-icon"><i class="fab fa-css3-alt"></i></div>
+            <span class="node-label">CSS3</span>
+            <span class="node-desc">Modern Styling</span>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="orbit-node js" style="--i: 2;">
+            <div class="node-icon"><i class="fab fa-js"></i></div>
+            <span class="node-label">JavaScript</span>
+            <span class="node-desc">Interactive Logic</span>
+          </div>
+
+          <!-- Bootstrap -->
+          <div class="orbit-node bootstrap" style="--i: 3;">
+            <div class="node-icon"><i class="fab fa-bootstrap"></i></div>
+            <span class="node-label">Bootstrap</span>
+            <span class="node-desc">Responsive UI</span>
+          </div>
+
+          <!-- Git -->
+          <div class="orbit-node git" style="--i: 4;">
+            <div class="node-icon"><i class="fab fa-git-alt"></i></div>
+            <span class="node-label">Git</span>
+            <span class="node-desc">Version Control</span>
+          </div>
+
+          <!-- GitHub -->
+          <div class="orbit-node github" style="--i: 5;">
+            <div class="node-icon"><i class="fab fa-github"></i></div>
+            <span class="node-label">GitHub</span>
+            <span class="node-desc">Code Hosting</span>
+          </div>
+
+        </div>
+
+        <!-- Outer Decorative Orbit Line -->
+        <div class="orbit-ring"></div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Projects Section - Interactive Slider -->
+  <section class="projects-section" id="projects">
+    <div class="projects-container">
+      <span class="sub-title">My Portfolio</span>
+      <h2 class="main-title">Featured <span>Projects</span></h2>
+      <p class="section-desc">Explore my latest work and interactive web applications</p>
+
+      <!-- Slider Wrapper with Controls -->
+      <div class="projects-slider-wrapper">
+
+        <!-- Navigation Buttons with Arrows -->
+        <button class="slider-btn prev-btn" id="prevBtn" aria-label="Previous Projects">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <button class="slider-btn next-btn" id="nextBtn" aria-label="Next Projects">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <!-- Track Mask Container -->
+        <div class="projects-track-container">
+          <div class="projects-track" id="projectsTrack">
+
+            <!-- Project 1 -->
+            <div class="project-card">
+              <div class="card-img-holder">
+                <img src="https://iili.io/CU2DBvs.png" alt="PizaaRo"
+                  class="project-img">
+              </div>
+              <div class="card-content">
+                <!-- 🔥 اسم المشروع وجنبه زرار Live Demo مباشرة -->
+                <div class="card-header">
+                  <h3 class="project-title">Pizza-Ro</h3>
+                  <a href="https://final-project-ecru-eta.vercel.app/index.html" target="_blank" class="live-demo-btn">
+                    <span>Demo</span> <i class="fas fa-external-link-alt"></i>
+                  </a>
+                </div>
+                <p class="project-desc">Short description of your project goes here. Built with HTML, CSS, and JS.</p>
+                <div class="project-techs">
+                  <span>HTML5</span>
+                  <span>CSS3</span>
+                  <span>JavaScript</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+              <div class="card-img-holder">
+                <img src="https://iili.io/CU3Jhsj.png" alt="Me Family"
+                  class="project-img">
+              </div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="project-title">Me Family</h3>
+                  <a href="https://booot-strap-project.vercel.app/index.html" target="_blank" class="live-demo-btn">
+                    <span>Demo</span> <i class="fas fa-external-link-alt"></i>
+                  </a>
+                </div>
+                <p class="project-desc">Short description of your project goes here. Responsive and fast layout.</p>
+                <div class="project-techs">
+                  <span>Html</span>
+                  <span>Bootstrap</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+              <div class="card-img-holder">
+                <img src="https://iili.io/CU3CDpR.png" alt="profile"
+                  class="project-img">
+              </div>
+              <div class="card-content">
+                <div class="card-header">
+                  <h3 class="project-title">Profile</h3>
+                  <a href="http://127.0.0.1:5501/index.html" target="_blank" class="live-demo-btn">
+                    <span>Demo</span> <i class="fas fa-external-link-alt"></i>
+                  </a>
+                </div>
+                <p class="project-desc">Short description of your project goes here. Modern interactive design.</p>
+                <div class="project-techs">
+                  <span>HTML5</span>
+                  <span>bootstrap</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  
+  <!-- 1. العنوان الرئيسي فوق الفورم بروح باقي الموقع -->
+  <div class="section-title">
+    <h2>Contact <span>Me</span></h2>
+    <div class="title-underline"></div>
+  </div>
+
+  <!-- 2. كارت الفورم في المنتصف -->
+  <div class="contact-container">
+    <form action="https://formspree.io/f/mykrrykj" method="POST" class="contact-form">
+      
+      <!-- 1. اسمك أنت -->
+      <div class="form-group">
+        <label for="my-name">To:</label>
+        <input type="text" id="my-name" value="Ahmed Yousri" readonly class="readonly-input">
+      </div>
+
+      <!-- 2. اسم الراسل -->
+      <div class="form-group">
+        <label for="sender-name">Your Name:</label>
+        <input type="text" name="name" id="sender-name" placeholder="Enter your name" required>
+      </div>
+
+      <!-- بريد الراسل -->
+      <div class="form-group">
+        <label for="sender-email">Your Email:</label>
+        <input type="email" name="_replyto" id="sender-email" placeholder="Enter your email" required>
+      </div>
+
+      <!-- 3. محتوى الرسالة -->
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" rows="5" placeholder="Write your message here..." required></textarea>
+      </div>
+
+      <!-- زر الإرسال -->
+      <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+
+    </form>
   </div>
 </section>
 
 
 
+
+
+
+
+
+
+  <!-- Footer Section -->
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- روابط الفوتر المربوطة السريعة -->
+    <ul class="footer-nav">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">My Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- أيقونات التواصل الاجتماعي -->
+    <div class="footer-socials">
+      <a href="https://wa.me/+201005878769" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.facebook.com/me/" target="_blank" aria-label="Facebook" class="social-icon facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/yousri2253?igsh=YzgwZ2ZmeWRrcWJo" target="_blank" aria-label="Instagram" class="social-icon instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+    <!-- كلمة الشكر -->
+    <div class="footer-thanks">
+      <p>Thank you for your visit!</p>
+    </div>
+
+  </div>
+</footer>
   <!-- ربط ملف الـ JS الخارجي -->
   <script src="home.js"></script>
 </body>
+
 </html>
