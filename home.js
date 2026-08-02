@@ -426,3 +426,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// ==========================================
+// Projects Dynamic Slider Logic
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('projectsTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const cards = track.querySelectorAll('.project-card');
+  let currentIndex = 0;
+
+  // معرفة عدد الكروت الظاهرة حسب حجم الشاشة
+  function getVisibleCardsCount() {
+    return window.innerWidth <= 768 ? 1 : 3;
+  }
+
+  // تحديث موقع الـ Slider وإغلاق/تفعيل الزراير
+  function updateSlider() {
+    const visibleCards = getVisibleCardsCount();
+    const maxIndex = cards.length - visibleCards;
+
+    // التأكد إن الـ index جوة الحدود
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex > maxIndex) currentIndex = maxIndex < 0 ? 0 : maxIndex;
+
+    // حساب المسافة بالتحريك
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = 20; // نفس الـ gap اللي في الـ CSS
+    const moveAmount = (cardWidth + gap) * currentIndex;
+
+    track.style.transform = `translateX(-${moveAmount}px)`;
+
+    // تعطيل الزراير عند الوصول للبداية أو النهاية
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+  }
+
+  // Event Listeners للزراير
+  nextBtn.addEventListener('click', () => {
+    const visibleCards = getVisibleCardsCount();
+    const maxIndex = cards.length - visibleCards;
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  // إعادة ضبط السلايدر عند تغيير حجم الشاشة (Resize)
+  window.addEventListener('resize', updateSlider);
+
+  // التشغيل الأولي
+  updateSlider();
+});
