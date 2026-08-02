@@ -249,12 +249,23 @@ body {
   background: #00b4d8;
   transition: width 0.3s ease;
 }
+.nav-logo-img {
+  width: 35px;          /* عرض اللوجو */
+  height: 35px;   
+  border-radius: 35px;
+  /* طول اللوجو */
+  object-fit: contain;  /* يضمن إن الصورة متتمطش وتفضل واضحة */
+  display: block;
+}
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
   width: 100%;
 }
 
+.logo-icon:hover {
+  transform: scale(1.5); /* تفاعل خفيف مع الماوس */
+}
 /* 3. زر الـ CV والصورة والـ Toggle */
 .nav-user {
   display: flex;
@@ -487,7 +498,7 @@ body {
 
 .puzzle-grid {
   width: 320px;
-  height: 320px;
+  height: 420px; /* الارتفاع هنا 420px */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -501,12 +512,14 @@ body {
   width: 100%;
   height: 100%;
   background-image: url("https://iili.io/CSLTADx.jpg");
-  background-size: 320px 320px;
+  
+  /* 👈 التعديل هنا: نخلي حجم الخلفية مطابق لأبعاد الـ Grid بالظبط (320px عرض × 420px طول) */
+  background-size: 320px 420px; 
+  
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1), opacity 3s ease, border-radius 3s ease;
 }
-
 .puzzle-grid.merged {
   gap: 0px !important;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 180, 216, 0.25);
@@ -541,16 +554,17 @@ body {
   .hero-name { font-size: 2.2rem; white-space: normal; } /* السماح بالتجميع على الموبايل */
   .hero-title { font-size: 1.4rem; white-space: normal; }
 
+  /* 👈 تعديل الطول في الموبايل */
   .puzzle-grid {
     width: 270px;
-    height: 270px;
+    height: 355px; /* تم زيادة الطول هنا برضه */
   }
 
   .puzzle-piece {
-    background-size: 270px 270px;
+    /* لازم background-size تطابق أبعاد الـ grid الجديدة بالظبط */
+    background-size: 270px 355px; 
   }
 }
-
 /* ==========================================
    إجبار السكاشن تنزل تحت بعضها تماماً
 ========================================== */
@@ -1842,6 +1856,27 @@ html, body {
   color: #00b4d8;
   transform: translateY(-2px);
   
+}
+
+/* تنسيق لوجو الفوتر فوق */
+/* Container اللي يجمع اللوجو والكلام جنب بعض على نفس السطر */
+.footer-brand-row {
+  display: inline-flex;
+  align-items: center;  /* 👈 بيخلي الصورة والكلام في نص مستوى بعض رأسيًا مسطرة واحدة */
+  justify-content: center;
+  gap: 10px;            /* مسافة بين اللوجو والكلام */
+}
+
+.footer-logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  object-fit: contain;
+  display: block;       /* يلغي أي مسافات مخفية تحت الصورة */
+}
+
+.footer-logo-img:hover {
+  transform: scale(1.5); /* تفاعل خفيف مع الماوس */
 }
 
 /* 📱 ريسبونسيف الموبايل: يحافظ عليهم جنب بعض بشياكة */
